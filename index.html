@@ -99,6 +99,7 @@ border-radius:10px;
 
 <div class="cart">
 <h3>Cart Total: ₹<span id="total">0</span></h3>
+<button onclick="clearCart()">Clear Cart</button>
 </div>
 
 <h3>Checkout</h3>
@@ -126,6 +127,9 @@ let total=0;
 function addToCart(name,price){
 total+=price;
 document.getElementById("total").innerText=total;
+function clearCart(){
+total=0;
+document.getElementById("total").innerText=0;
 }
 
 function sendOrder(){
