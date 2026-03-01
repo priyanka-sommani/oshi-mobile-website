@@ -122,12 +122,6 @@ border-radius:10px;
 
 </div>
 
-<script>
-let total=0;
-function addToCart(name,price){
-total+=price;
-document.getElementById("total").innerText=total;
-}
 
 <script>
 let cart = [];
@@ -210,31 +204,6 @@ Free Shipping PAN INDIA`;
 }
 
 updateCart();
-</script>
-
-
-function clearCart()
-{
-total=0;
-document.getElementById("total").innerText=0;
-}
-
-function sendOrder(){
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let address=document.getElementById("address").value;
-
-let message=`New Order - Oshi Mobile & Electronics
-Customer: ${name}
-Phone: ${phone}
-Address: ${address}
-Total: ₹${total}
-Payment Mode: UPI QR
-UPI Paid To: aman25talreja-1@okhdfcbank
-Free Shipping PAN INDIA`;
-
-window.open(`https://wa.me/919111119936?text=${encodeURIComponent(message)}`);
-}
 </script>
 
 </body>
