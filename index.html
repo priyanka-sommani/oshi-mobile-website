@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Oshi Mobile & Electronics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+margin:0;
+padding:0;
+}
+header{
+text-align:center;
+padding:20px;
+background:#111;
+}
+h1{
+color:#00ffcc;
+}
+.container{
+padding:20px;
+}
+.product{
+background:#1a1a1a;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+}
+button{
+background:#00ffcc;
+border:none;
+padding:10px;
+width:100%;
+border-radius:5px;
+font-weight:bold;
+}
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#222;
+border:1px solid #333;
+color:white;
+border-radius:5px;
+}
+.cart{
+background:#111;
+padding:15px;
+border-radius:10px;
+margin-top:20px;
+}
+.qr{
+text-align:center;
+margin-top:20px;
+}
+a.whatsapp{
+display:block;
+background:#25D366;
+text-align:center;
+padding:15px;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin-top:15px;
+font-weight:bold;
+}
+iframe{
+width:100%;
+height:250px;
+border:0;
+margin-top:20px;
+border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Oshi Mobile & Electronics</h1>
+<p>PAN India Delivery | Free Shipping</p>
+</header>
+
+<div class="container">
+
+<div class="product">
+<h3>Sample Smartphone</h3>
+<p>₹15,999</p>
+<button onclick="addToCart('Sample Smartphone',15999)">Add to Cart</button>
+</div>
+
+<div class="product">
+<h3>Wireless Earbuds</h3>
+<p>₹1,999</p>
+<button onclick="addToCart('Wireless Earbuds',1999)">Add to Cart</button>
+</div>
+
+<div class="cart">
+<h3>Cart Total: ₹<span id="total">0</span></h3>
+</div>
+
+<h3>Checkout</h3>
+<input type="text" id="name" placeholder="Full Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<textarea id="address" placeholder="Full Address"></textarea>
+
+<div class="qr">
+<h3>Scan & Pay</h3>
+<img src="YOUR_QR_IMAGE_LINK" width="200">
+<p>UPI ID: aman25talreja-1@okhdfcbank</p>
+<p>Upload payment screenshot after payment</p>
+<input type="file">
+</div>
+
+<a class="whatsapp" onclick="sendOrder()">Place Order on WhatsApp</a>
+
+<h3>Visit Us</h3>
+<iframe src="https://maps.google.com/maps?q=Oshi%20Mobile%20Indore&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+
+</div>
+
+<script>
+let total=0;
+function addToCart(name,price){
+total+=price;
+document.getElementById("total").innerText=total;
+}
+
+function sendOrder(){
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
+
+let message=`New Order - Oshi Mobile & Electronics
+Customer: ${name}
+Phone: ${phone}
+Address: ${address}
+Total: ₹${total}
+Payment Mode: UPI QR
+UPI Paid To: aman25talreja-1@okhdfcbank
+Free Shipping PAN INDIA`;
+
+window.open(`https://wa.me/919111119936?text=${encodeURIComponent(message)}`);
+}
+</script>
+
+</body>
+</html>
