@@ -128,6 +128,91 @@ function addToCart(name,price){
 total+=price;
 document.getElementById("total").innerText=total;
 }
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  let existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name: name, price: price, qty: 1 });
+  }
+
+  updateCart();
+}
+
+function updateCart() {
+  let cartHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    let subtotal = item.price * item.qty;
+    total += subtotal;
+
+    cartHTML += `
+      <p>${item.name} (x${item.qty}) - ₹${subtotal}</p>
+    `;
+  });
+
+  if (cart.length === 0) {
+    cartHTML = "<p>Cart is empty</p>";
+  }
+
+  document.querySelector(".cart").innerHTML = `
+    <h3>Cart</h3>
+    ${cartHTML}
+    <h3>Total: ₹${total}</h3>
+    <button onclick="clearCart()">Clear Cart</button>
+  `;
+}
+
+function clearCart() {
+  cart = [];
+  updateCart();
+}
+
+function sendOrder() {
+  if (cart.length === 0) {
+    alert("Cart is empty!");
+    return;
+  }
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+
+  let productList = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    let subtotal = item.price * item.qty;
+    total += subtotal;
+    productList += `${item.name} (x${item.qty}) - ₹${subtotal}\n`;
+  });
+
+  let message = `New Order - Oshi Mobile & Electronics
+Customer: ${name}
+Phone: ${phone}
+Address: ${address}
+
+Products:
+${productList}
+
+Total: ₹${total}
+Payment Mode: UPI QR
+UPI Paid To: aman25talreja-1@okhdfcbank
+Free Shipping PAN INDIA`;
+
+  window.open(`https://wa.me/919111119936?text=${encodeURIComponent(message)}`);
+}
+
+updateCart();
+</script>
+
+
 function clearCart()
 {
 total=0;
